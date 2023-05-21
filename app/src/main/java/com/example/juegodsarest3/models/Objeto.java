@@ -6,11 +6,22 @@ public class Objeto {
     private String descripcion;
     private double precio;
 
+    private String fotoImagen;
+
+    public String getFotoImagen() {
+        return fotoImagen;
+    }
+
+    public void setFotoImagen(String fotoImagen) {
+        this.fotoImagen = fotoImagen;
+    }
+
     public Objeto(){}
-    public Objeto(String nombre, String descripcion, double precio) {
+    public Objeto(String nombre, String descripcion, double precio,String fotoImagen) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.fotoImagen=fotoImagen;
     }
 
     public String getNombre() {

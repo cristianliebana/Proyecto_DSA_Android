@@ -2,7 +2,9 @@ package com.example.juegodsarest3.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,20 +23,39 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+/*
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+
+
+        if (isLoggedIn) {
+            startActivity(new Intent(LoginActivity.this, MenuPrincipal.class));
+            finish();
+        }
+  */
         configureLoginButton();
+        configureRegisterButton();
     }
-
+    private void configureRegisterButton(){
+        Button BotonRegistrar = (Button) findViewById(R.id.registerBtn);
+        BotonRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+    }
     private void configureLoginButton(){
         Button BotonLogin = (Button) findViewById(R.id.entrarBtn);
         EditText correo = (EditText) findViewById(R.id.mailAdd);
         EditText password = (EditText) findViewById(R.id.passwordAdd);
+
 
         BotonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +71,19 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("ERRORCRISTIAN",response.toString());
                         if (response.isSuccessful()){
                             startActivity(new Intent(LoginActivity.this, MenuPrincipal.class));
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("isLoggedIn", true);
+                            editor.apply();
+
+                            startActivity(new Intent(LoginActivity.this, MenuPrincipal.class));
                         }
                         else {
                             Snackbar mySnackbar = Snackbar.make(view, "Correo o Password incorrectos", BaseTransientBottomBar.LENGTH_SHORT);
                             mySnackbar.show();
                         }
                     }
+
                     @Override
                     public void onFailure(Call<Usuario> call, Throwable t) {
                         Snackbar mySnackbar = Snackbar.make(view, "No se ha podido establecer conexión", BaseTransientBottomBar.LENGTH_SHORT);

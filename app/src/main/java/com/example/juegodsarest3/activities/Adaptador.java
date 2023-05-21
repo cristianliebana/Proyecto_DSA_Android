@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //import android.support.v7.widget.RecyclerView;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.juegodsarest3.R;
 import com.example.juegodsarest3.models.Objeto;
+import com.squareup.picasso.Picasso;
 
 public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     private List<Objeto> values;
@@ -24,8 +26,10 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
         public TextView txtHeader;
         public TextView txtFooter;
         public TextView txtFooter2;
+
         public ImageView icon;
         public View layout;
+
 
         public ViewHolder(View v) {
             super(v);
@@ -34,6 +38,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
             txtFooter2 = (TextView) v.findViewById(R.id.thirdLine);
             icon = (ImageView) v.findViewById(R.id.icon);
+
         }
     }
 
@@ -79,6 +84,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
         Objeto o = values.get(position);
         final String name = o.getNombre();
         holder.txtHeader.setText(name);
+
         holder.txtHeader.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +95,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
         holder.txtFooter.setText(o.getDescripcion());
         holder.txtFooter2.setText(String.valueOf(o.getPrecio()));
 
-
+        Picasso.get().load(o.getFotoImagen()).into(holder.icon);
 
     }
 
@@ -98,5 +104,6 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     public int getItemCount() {
         return values.size();
     }
+
 
 }

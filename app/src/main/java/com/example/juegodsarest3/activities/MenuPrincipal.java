@@ -23,7 +23,7 @@ public class MenuPrincipal extends AppCompatActivity {
         tienda_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MenuPrincipal.this, tiendaActivity.class));
+                startActivity(new Intent(MenuPrincipal.this, TiendaActivity.class));
             }
         });
     }

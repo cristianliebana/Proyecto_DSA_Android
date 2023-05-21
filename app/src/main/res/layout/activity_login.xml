@@ -56,4 +56,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordAdd" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="¿Aun no te has registrado?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/entrarBtn" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        style="?attr/materialIconButtonFilledTonalStyle"
+        android:layout_width="144dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="30dp"
+        android:text="Registrate"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"
+        android:textColor="#E91E63"
+        android:backgroundTint="#FCE4EC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
